@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="posserldm.webarticle.model.Article" table="article" lazy="false">
+        <id name="id" column="id" type="int">
+            <generator class="native" />
+        </id>
+        <property name="username" column="username" type="string" length="25"/>
+        <property name="article" column="article" type="string"/>
+        <property name="publicTime" column="publicTime">
+            <type name="java.sql.Timestamp"></type>
+        </property>
+        <!--
+            在数据库中，column是表的外键
+            如下：即为article表下的外键，user表下的主键
+        -->
+        <many-to-one name="user" class="posserldm.webarticle.model.User" column="username"
+                     insert="false" update="false"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="posserldm.webarticle.model.User" table="user">
+        <id name="username">
+            <column name="username" sql-type="varchar(25)" length="25"/>
+            <generator class="assigned" />
+        </id>
+        <property name="passwd">
+            <column name="passwd" sql-type="varchar(25)" length="25"/>
+        </property>
+        <!--
+            key:是被关联表的外键
+        -->
+        <set name="articles" inverse="true">
+            <key column="username" />
+            <one-to-many class="posserldm.webarticle.model.Article" />
+        </set>
+    </class>
+</hibernate-mapping>
